@@ -48,14 +48,15 @@
         public function obtenerTodosUsuarios() {
             $sql = "SELECT * FROM usuarios";
             $result = $this->db->query($sql);
-            $users = array();
+            $users = array(); // Como pueden ser varios usuarios, los almacenamos en arreglos
 
+            // Si hay mas de 1 usuario, guardamos 1 a 1 en un arreglo
             if($result->num_rows > 0) {
                 while($row = $result-> fetch_assoc()) {
-                    $users[] = row;
+                    $users[] = $row;
                 }
             }
-            return users;
+            return $users;
         }
 
         // Funcion para actualizar usuarios:
@@ -106,8 +107,8 @@
         }
 
         // Funcion para buscar usuario por correo: 
-        public function obtenerTodosUsuarios($correo) {
-            $sql = "SELECT * FROM usuarios WHERE correo='$correo' ";
+        public function obtenersUsuarioPorCorreo($correo) {
+            $sql = "SELECT * FROM usuarios WHERE correo='$correo'";
             $result = $this->db->query($sql);
             // $users = array();
 

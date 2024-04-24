@@ -5,10 +5,10 @@
     class userController {
         private $userService;
 
-        public function __constructor() {
+        public function __constructor() { // constructor sirve para definir a lo que tendra acceso, en este caso a la base de datos
             // Otorgamos acceso a la base de datos:
             $db = (new Database())->getConnection();
-            $this->userService = new UserService($db);
+            $this->userService = new UserService($db); // La variable local userService, le damos acceso a todos los metodos creados en el servidio y desde aqui mandarlos a llamar
         }
 
         // Primera funcion a manejar: 
@@ -17,7 +17,7 @@
                 $usuario = $_POST['usuario'];
                 $password = $_POST['password'];
 
-                if(!empty($usuario) && !empty($password)) {
+                if(!empty($usuario) && !empty($password)) { 
                     $user = $this->userService->login($usuario, $password);
                     
                     if($user) {
